@@ -1,0 +1,53 @@
+* {
+background-color: #010101;
+}
+
+p{
+    color: mediumvioletred;
+}
+
+h1 {
+    color: mediumvioletred;
+}
+
+form{
+    color: mediumvioletred;
+}
+
+select, input, button {
+    color: mediumvioletred;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+td{
+    color: #c8c6c5;
+    padding-left: 15PX;
+    padding-right: 10PX;
+    align-content: center;
+}
+
+th{
+    color: mediumvioletred;
+}
+
+table tbody td a{
+    border: 2px solid mediumvioletred;
+    color: #c8c6c5;
+    border-radius: 5px;
+    text-decoration: None;
+}
+
+input{
+    border: 2px solid mediumvioletred;
+    color: #c8c6c5;
+    border-radius: 5px;
+    text-decoration: None;
+    
+}
+
+a, input[type="submit"], input[type="button"]{
+    cursor: pointer;
+}
