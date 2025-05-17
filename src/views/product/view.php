@@ -1,6 +1,37 @@
-<h1>VIEW</h1>
+<a href="/product/index">
+    <input type="button" value="Back" />
+</a>
 
-<?php 
-    var_dump($data);
-
-?>
+<h1>Product details</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price HT</th>
+        <th>TVA</th>
+        <th>Price TTC</th>
+        <th>Storage zone</th>
+        <th>Picture</th>
+    </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td><?= htmlspecialchars(isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO'])[3] : null) ?></td>
+                <td><?= htmlspecialchars($product['name'] ?? 'N/A') ?></td>
+                <td><?= htmlspecialchars($product['quantity'] ?? 'N/A') ?></td>
+                <td><?= htmlspecialchars($product['priceHT'] ?? 'N/A') ?>  €</td>
+                <td><?= htmlspecialchars($product['TVA'] ?? 'N/A') ?> %</td>
+                <td><?= htmlspecialchars($product['priceTTC'] ?? 'N/A') ?>  €</td>
+                <td><?= htmlspecialchars($product['zone_name'] ?? ($product['idZone'] ?? 'N/A')) ?></td>
+                <td>
+                    <?php if (!empty($product['image'])): ?>
+                        <img src="/public/image/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name'] ?? 'Product Image') ?>" style="width: 50px; height: auto;">
+                    <?php else: ?>
+                        N/A
+                    <?php endif; ?>
+                </td>
+            </tr>
+    </tbody>
+</table>

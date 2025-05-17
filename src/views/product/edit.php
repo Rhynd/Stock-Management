@@ -1,41 +1,37 @@
-<h1>Edit Student</h1>
+<a href="/product/index">
+    <input type="button" value="Back" />
+</a>
 
-<?php 
-/** @var $student array */
+<h1>Edit a product</h1>
+<form action="/product/postedit" method="POST">
+    <input type="hidden" name="id" value="<?= htmlspecialchars(isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO'])[3] : null); ?>">
+    <label for="name">name : </label>
+    <input type="text" name="name" id="name" value="<?= /** @noinspection PhpUndefinedVariableInspection */
+    htmlspecialchars($product['name']) ?>">
+    <br><br>
+    <label for="quantity">quantity : </label>
+    <input type="number" name="quantity" id="quantity" value="<?= htmlspecialchars($product['quantity']) ?>">
+    <br><br>
+    <label for="priceHT">price HT : </label>
+    <input type="number" name="priceHT" id="priceHT" value="<?= htmlspecialchars($product['priceHT']) ?>">
+    <br><br>
 
-    if(isset($success)) {
-        echo "<div class=\"form-group\">";
-        echo "<p class=\"success\">".$success."</p>";
-        echo "</div>";
-        echo "<a class=\"btn btn-primary\" href=\"/student/index\">Retourner à l'accueil</a>";
-    }
-    if(isset($error)) {
-        echo "<div class=\"form-group\">";
-        echo "<p class=\"success\">".$success."</p>";
-        echo "</div>";
-        echo "<a class=\"btn btn-primary\" href=\"/student/index\">Retourner à l'accueil</a>";
-    }
-?>
-</div>
-<form action="/student/edit/<?= $student['id'] ?>" method="POST">
-
-    <input type="hidden" name="id" value="<?= $student['id'] ?>">
-
-    <div class="form-group">
-        <label for="nom">Nom : </label>
-        <input type="text" name="nom" value="<?= $student['nom'] ?>">
-    </div>
-    <div class="form-group">
-        <label for="prenom">Prénom : </label>
-        <input type="text" name="prenom" value="<?= $student['prenom'] ?>">
-    </div>
-    <div class="form-group">
-        <label for="email">Email : </label>
-        <input type="email" name="email" value="<?= $student['email'] ?>">
-    </div>
-    <div class="form-group">
-        <input class="btn btn-primary" type="submit" value="Valider">
-    </div>
+    <label for="TVA">TVA : </label>
+    <input type="number" name="TVA" id="TVA" value="<?= htmlspecialchars($product['TVA']) ?>">
+    <br><br>
+    <label for="idZone">Storage zone : </label>
+    <select name="idZone" id="idZone">
+        <option value="1">Zone 1</option>
+        <option value="2">Zone 2</option>
+        <option value="3">Zone 3</option>
+    </select>
+    <br><br>
+    <label for="image">picture : </label>
+    <img src="/public/image/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name'] ?? 'Product Image') ?>" style="width: 50px; height: auto;">
+    <input type="file" name="image" id="image" value="<?= "public/image/" .$product['image']?>">
+    <br><br>
+    <input type="hidden" name="priceTTC" id="priceTTC" value=0>
+    <input class="btn btn-primary" type="submit" value="submit">
 </form>
 
 

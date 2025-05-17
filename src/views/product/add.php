@@ -2,34 +2,32 @@
     <input type="button" value="Back" />
 </a>
 
-<h1>Add product</h1>
-<form action="/product/postadd" method="POST">
-        <label for="name">Nom : </label>
-        <input type="text" name="name" id="name">
+<h1>Add a product</h1>
+<form action="/product/postadd" method="POST" enctype="multipart/form-data">
+        <label for="name">name : </label>
+        <input type="text" name="name" id="name" required>
     <br><br>
-        <label for="quantity">quantité : </label>
-        <input type="number" name="quantity" id="quantity">
+        <label for="quantity">quantity : </label>
+        <input type="number" name="quantity" id="quantity" required>
     <br><br>
-        <label for="priceHT">prix HT : </label>
-        <input type="number" name="priceHT" id="priceHT">
+        <label for="priceHT">price HT : </label>
+        <input type="number" name="priceHT" id="priceHT" required>
     <br><br>
     
         <label for="TVA">TVA : </label>
-        <input type="number" name="TVA" id="TVA">
+        <input type="number" name="TVA" id="TVA" required>
     <br><br>
-        <label for="zone">zone : </label>
+        <label for="idZone">Storage zone : </label>
         <select name="idZone" id="idZone">
             <option value="1">Zone 1</option>
             <option value="2">Zone 2</option>
             <option value="3">Zone 3</option>
-            </select>
+        </select>
     <br><br>
-        <label for="image">image : </label>
-        <input type="file" name="image" id="image">
+        <label for="image">picture : </label>
+        <input type="file" name="image" id="image" required>
     <br><br>
         <input type="hidden" name="priceTTC" id="priceTTC" value=0>
-        <input class="btn btn-primary" type="submit" value="Valider">
+        <input class="btn btn-primary" type="submit" value="submit">
     </form>
     
-
-<?php debug::printr($data);?>

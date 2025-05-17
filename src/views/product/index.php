@@ -1,4 +1,4 @@
-<h1>Product List</h1>
+<h1>Products List</h1>
 
 <a href="/product/add">
     <input type="button" value="Add Product" />
@@ -9,8 +9,8 @@
         <tr>
             <th>Name</th>
             <th>Quantity</th>
-            <th>Price TTC</th>
-            <th>Zone</th>
+            <th>Price</th>
+            <th>Storage zone</th>
             <th>Picture</th>
             <th>Actions</th>
         </tr>
@@ -25,14 +25,14 @@
                 <td><?= htmlspecialchars($product['zone_name'] ?? ($product['idZone'] ?? 'N/A')) ?></td>
                 <td>
                     <?php if (!empty($product['image'])): ?>
-                        <img src="/uploads/product_images/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name'] ?? 'Product Image') ?>" style="width: 50px; height: auto;">
+                        <img src="/public/image/<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name'] ?? 'Product Image') ?>" style="width: 50px; height: auto;">
                     <?php else: ?>
                         N/A
                     <?php endif; ?>
                 </td>
                 <td>
-                    <a href="/product/view/<?= htmlspecialchars($product['id'] ?? '') ?>" class="btn btn-info btn-sm">Détails</a>
-                    <a href="/product/edit/<?= htmlspecialchars($product['id'] ?? '') ?>" class="btn btn-warning btn-sm">Modifier</a>
+                    <a href="/product/view/<?= htmlspecialchars($product['id'] ?? '') ?>" class="btn btn-info btn-sm">Details</a>
+                    <a href="/product/edit/<?= htmlspecialchars($product['id'] ?? '') ?>" class="btn btn-warning btn-sm">Modify</a>
                     <a href="#" onclick="confirmDelete(<?= htmlspecialchars($product['id'] ?? '') ?>); return false;" class="btn btn-danger btn-sm">Supprimer</a>
                 </td>
             </tr>
@@ -47,7 +47,7 @@
 
 <script>
     function confirmDelete(id) {
-        if (confirm("Are you sure you want to delete this products?")) {
+        if (confirm("Are you sure you want to delete this product?")) {
             fetch(`/product/delete/${id}`, {
                 method: 'GET',
             })
