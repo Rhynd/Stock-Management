@@ -1,7 +1,22 @@
 <?php /** @noinspection PhpUndefinedFieldInspection */
 
 class zoneController extends Controller{
-
+    
+    protected $zone;
+    protected $product;
+    
+    public function __construct()
+    {
+        parent::__construct();
+        $productModelFile = ROOT . DS . 'src' . DS . 'models' . DS . 'productModel.php';
+        if (is_readable($productModelFile)) {
+            require_once $productModelFile;
+            $this->product = class_exists('productModel') ? new productModel() : null;
+        } else {
+            $this->product = null;
+        }
+    }
+    
     public function redirect($url){
         header('location: ' . $url);
         die();
@@ -19,7 +34,11 @@ class zoneController extends Controller{
             echo "zone not found.";
             return;
         }
-        $this->set(compact("zone"));
+        $products = [];
+        if ($this->product) {
+            $products = $this->product->find(True, $id, "idZone");
+        }
+        $this->set(compact("zone", "products"));
         $this->render();
     }
 

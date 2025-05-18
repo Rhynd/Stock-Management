@@ -19,12 +19,12 @@ class model extends DB {
         $stmt->execute();
         if (!$mode) {
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $data;
         }
         else {
-            $data2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        return $data2;
+        //debug::printr($data);
+        return $data;
     }
 
     public function insert($data) {

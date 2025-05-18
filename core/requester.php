@@ -31,8 +31,9 @@ class Requester {
         $searchF = $this->whatSearch($search, count($quoi));
         $where = [];
         $where[0] = $searchF[0] ." like '" . $quoi[0] . "'";
-        if (count($quoi) > 0 or $cond != "null") {
-            for ($i = 1; $i < count($quoi); $i++ ){
+        $lenQuoi = count($quoi);
+        if ($lenQuoi > 0 || $cond != "null") {
+            for ($i = 1; $i < $lenQuoi; $i++ ){
                 $where[$i] = " " .$cond . " " .$searchF[$i] ." like '" . $quoi[$i] ."'";
             }
         }

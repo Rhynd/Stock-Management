@@ -20,7 +20,7 @@ class DB{
     }
 
     private function getConfig($Connection_Name){
-        $config = include_once(ROOT.DS."config.php");
+        $config = include(ROOT.DS."config.php");
         $this->DB_HOST = $config["connections"][$Connection_Name]["host"];
         $this->DB_USER = $config["connections"][$Connection_Name]["user"];
         $this->DB_PASS = $config["connections"][$Connection_Name]["password"];

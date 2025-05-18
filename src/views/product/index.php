@@ -11,7 +11,7 @@
             <th>Quantity</th>
             <th>Price</th>
             <th>Storage zone</th>
-            <th>Picture</th>
+            <th>Image</th>
             <th>Actions</th>
         </tr>
     </thead>

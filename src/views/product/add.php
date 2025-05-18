@@ -17,12 +17,18 @@
         <label for="TVA">TVA : </label>
         <input type="number" name="TVA" id="TVA" required>
     <br><br>
-        <label for="idZone">Storage zone : </label>
-        <select name="idZone" id="idZone">
-            <option value="1">Zone 1</option>
-            <option value="2">Zone 2</option>
-            <option value="3">Zone 3</option>
-        </select>
+    <label for="idZone">Storage zone : </label>
+    <select name="idZone" id="idZone">
+        <?php if (!empty($zones)): ?>
+            <?php foreach ($zones as $zone): ?>
+                <option value="<?= htmlspecialchars($zone['id']) ?>">
+                    <?= htmlspecialchars($zone['libelle']) ?>
+                </option>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <option value="">No zones available</option>
+        <?php endif; ?>
+    </select>
     <br><br>
         <label for="image">picture : </label>
         <input type="file" name="image" id="image" required>
