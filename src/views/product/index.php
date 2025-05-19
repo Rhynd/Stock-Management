@@ -33,7 +33,7 @@
                 <td>
                     <a href="/product/view/<?= htmlspecialchars($product['id'] ?? '') ?>" class="btn btn-info btn-sm">Details</a>
                     <a href="/product/edit/<?= htmlspecialchars($product['id'] ?? '') ?>" class="btn btn-warning btn-sm">Modify</a>
-                    <a href="#" onclick="confirmDelete(<?= htmlspecialchars($product['id'] ?? '') ?>); return false;" class="btn btn-danger btn-sm">Supprimer</a>
+                    <a href="#" onclick="confirmDelete(<?= htmlspecialchars($product['id'] ?? '') ?>); return false;" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -44,6 +44,11 @@
     <?php endif; ?>
     </tbody>
 </table>
+
+<a href="/zone/index">
+    <input type="button" value="Storage zones" />
+</a>
+
 
 <script>
     function confirmDelete(id) {
