@@ -18,7 +18,7 @@
     </thead>
     <tbody>
             <tr>
-                <td><?= htmlspecialchars(isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO'])[3] : null) ?></td>
+                <td><?= htmlspecialchars($id) ?></td>
                 <td><?= htmlspecialchars($product['name'] ?? 'N/A') ?></td>
                 <td><?= htmlspecialchars($product['quantity'] ?? 'N/A') ?></td>
                 <td><?= htmlspecialchars($product['priceHT'] ?? 'N/A') ?>  €</td>

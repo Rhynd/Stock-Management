@@ -15,7 +15,7 @@
     </thead>
     <tbody>
     <tr>
-        <td><?= htmlspecialchars(isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO'])[3] : null) ?></td>
+        <td><?= htmlspecialchars($id) ?></td>
         <td><?= htmlspecialchars($zone['libelle'] ?? 'N/A') ?></td>
         <td><?= htmlspecialchars($zone['rue'] ?? 'N/A') ?></td>
         <td><?= htmlspecialchars($zone['cp'] ?? 'N/A') ?></td>

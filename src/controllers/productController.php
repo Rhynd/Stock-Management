@@ -48,7 +48,7 @@ class productController extends Controller {
             echo "product not found.";
             return;
         }
-        $this->set(compact("product"));
+        $this->set(compact("product", "id"));
         $this->render();
     }
 
@@ -66,7 +66,7 @@ class productController extends Controller {
             echo "product not found.";
             return;
         }
-        $this->set(compact("product"));
+        $this->set(compact("product", "id"));
         $this->render();
     }
 
@@ -76,17 +76,21 @@ class productController extends Controller {
             $TVA = (float)$_POST['TVA'];
             $_POST['priceTTC'] = $priceHT * (1 + $TVA / 100);
         }
-        if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-            $fileName = uniqid('', true) . "." . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-            $_POST['image'] = $fileName;
-            move_uploaded_file($_FILES['image']['tmp_name'], ROOT .DS .'public' .DS .'image' .DS .$fileName);
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == 0){
+            $check = getimagesize($_FILES['image']['tmp_name']);
+            if ($check !== false) {
+                $fileName = uniqid('', true) . "." . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+                $_POST['image'] = $fileName;
+                move_uploaded_file($_FILES['image']['tmp_name'], ROOT . DS . 'public' . DS . 'image' . DS . $fileName);
+                $data = $this->product->insert($_POST);
+                $this->set(compact("data"));
+                $this->render();
+                $this->redirect('/product/index');
+            }
+            else{
+                echo "Uploaded file is not a valid image.";
+            }
         }
-        
-        
-        $data = $this->product->insert($_POST);
-        $this->set(compact("data"));
-        $this->render();
-        $this->redirect('/product/index');
     }
 
     public function postedit(){
@@ -96,14 +100,22 @@ class productController extends Controller {
             $_POST['priceTTC'] = $priceHT * (1 + $TVA / 100);
         }
         if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-            $fileName = uniqid('', true) . "." . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-            if (move_uploaded_file($_FILES['image']['tmp_name'], ROOT .DS .'public' .DS .'image' .DS .$fileName)) {
-                unlink(ROOT .DS .'public' .DS .'image' .DS .$this->product->find(False, $_POST['id'], "id")['image']);
-                $_POST['image'] = $fileName;
-            } 
+            $check = getimagesize($_FILES['image']['tmp_name']);
+            if ($check !== false) {
+                $fileName = uniqid('', true) . "." . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+                if (move_uploaded_file($_FILES['image']['tmp_name'], ROOT .DS .'public' .DS .'image' .DS .$fileName)) {
+                    unlink(ROOT . DS . 'public' . DS . 'image' . DS . $this->product->find(False, $_POST['id'], "id")['image']);
+                    $_POST['image'] = $fileName;
+                }
+            }
+            else{
+                echo "Uploaded file is not a valid image.";
+                return;
+            }
         }
         else {
-            $_POST['image'] = $this->product->find(False, $_POST['id'], "id")['image'];
+            echo "Uploaded file is too large, max file size is 2MB";
+            return;
         }
         $data = $this->product->update($_POST);
         $this->set(compact("data"));

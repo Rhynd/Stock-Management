@@ -38,7 +38,7 @@ class zoneController extends Controller{
         if ($this->product) {
             $products = $this->product->find(True, $id, "idZone");
         }
-        $this->set(compact("zone", "products"));
+        $this->set(compact("zone", "products", "id"));
         $this->render();
     }
 
@@ -52,7 +52,7 @@ class zoneController extends Controller{
             echo "zone not found.";
             return;
         }
-        $this->set(compact("zone"));
+        $this->set(compact("zone", "id"));
         $this->render();
     }
 

@@ -4,7 +4,7 @@
 
 <h1>Edit a product</h1>
 <form action="/product/postedit" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="<?= htmlspecialchars(isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO'])[3] : null) ?>">
+    <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
     <label for="name">name : </label>
     <input type="text" name="name" id="name" value="<?= htmlspecialchars($product['name']) ?>">
     <br><br>

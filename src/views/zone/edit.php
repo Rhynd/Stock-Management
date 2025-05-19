@@ -4,7 +4,7 @@
 
 <h1>Add a storage zone</h1>
 <form action="/zone/postedit" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="<?= htmlspecialchars(isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO'])[3] : null) ?>">
+    <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
     <label for="libelle">name : </label>
     <input type="text" name="libelle" id="libelle" value="<?= htmlspecialchars($zone['libelle']) ?>" required>
     <br><br>
