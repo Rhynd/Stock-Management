@@ -1,3 +1,3 @@
 <?php
 
-echo"blblbl";
+echo"You should not see this";
